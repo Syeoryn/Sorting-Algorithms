@@ -55,3 +55,21 @@ Heap.prototype.insert = function(value){
   }
   return value;
 }
+
+Heap.prototype.remove = function(){
+  if(this._data.length === 1) return this._data.pop();
+  var removed = this._data[0];
+  this._data[0] = this._data.pop();
+  var insertion = 0;
+  var leftChild = this.leftChildOf(0);
+  var rightChild = this.rightChildOf(0);
+  child = this._data[leftChild] < this._data[rightChild] ? leftChild : rightChild;
+  while(this._data[insertion] > this._data[child]){
+    this.swap(insertion, child);
+    insertion = child;
+    var leftChild = this.leftChildOf(insertion);
+    var rightChild = this.rightChildOf(insertion);
+    child = this._data[leftChild] < this._data[rightChild] ? leftChild : rightChild;
+  }
+  return removed;
+}
