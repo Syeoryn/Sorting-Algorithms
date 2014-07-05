@@ -23,12 +23,23 @@ var heapSort = function(array){
 
 var Heap = function(){
   this._data = [];
-}
+};
 
 Heap.prototype.leftChildOf = function(index){
   return index * 2 + 1;
-}
+};
 
 Heap.prototype.rightChildOf = function(index){
   return index * 2 + 2;
+};
+
+Heap.prototype.parentOf = function(index){
+  if(!index) return null;
+  Math.ceil(index / 2) - 1;
+};
+
+Heap.prototype.swap = function(i1, i2){
+  var temp = this._data[i1];
+  this._data[i1] = this._data[i2]
+  this._data[i2] = temp;
 }
