@@ -73,3 +73,7 @@ Heap.prototype.remove = function(){
   }
   return removed;
 }
+
+Heap.prototype.showFirst = function(){
+  return this._data[0];
+}
