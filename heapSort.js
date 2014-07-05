@@ -43,3 +43,15 @@ Heap.prototype.swap = function(i1, i2){
   this._data[i1] = this._data[i2]
   this._data[i2] = temp;
 }
+
+Heap.prototype.insert = function(value){
+  this._data.push(value);
+  var insertion = this._data.length - 1;
+  var parent = this.parentOf(insertion);
+  while(this._data[insertion] < this._data[parent]){
+    this.swap(insertion, parent);
+    insertion = parent;
+    parent = this.parentOf(insertion);
+  }
+  return value;
+}
