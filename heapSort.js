@@ -35,7 +35,7 @@ Heap.prototype.rightChildOf = function(index){
 
 Heap.prototype.parentOf = function(index){
   if(!index) return null;
-  Math.ceil(index / 2) - 1;
+  return Math.ceil(index / 2) - 1;
 };
 
 Heap.prototype.swap = function(i1, i2){
