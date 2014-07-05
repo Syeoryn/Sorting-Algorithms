@@ -20,3 +20,15 @@ var heapSort = function(array){
 // When values are removed, they're popped off the top, and the last
 // value in the heap is popped off, added to the top, then sorted
 // until the heap is properly sorted
+
+var Heap = function(){
+  this._data = [];
+}
+
+Heap.prototype.leftChildOf = function(index){
+  return index * 2 + 1;
+}
+
+Heap.prototype.rightChildOf = function(index){
+  return index * 2 + 2;
+}
