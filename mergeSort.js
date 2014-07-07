@@ -13,13 +13,10 @@
 // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 var simpleMergeSort = function(array){
-  var subsets = [];
-  for(var i = 0; i < array.length; i++){
-    subsets.push([array[i]]);
-  }
-  while(array.length > 1){
-
-  }
+  if(array.length === 1) return array;
+  var left  = array.slice( 0, Math.floor(array.length / 2) );
+  var right = array.slice( Math.floor(array.length / 2) );
+  return merge(simpleMergeSort(left), simpleMergeSort(right));
 }
 
 var merge = function(array1, array2){
