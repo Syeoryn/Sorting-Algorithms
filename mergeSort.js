@@ -37,3 +37,23 @@ var merge = function(array1, array2){
   }
   return merged;
 }
+
+
+// Merge sort can be optimized by more selectively splitting the initial array.
+// Rather than splitting the array into the smallest pieces and merging from there,
+// it is more efficient to create the groups based on their initial order--
+// as long as values are already in order, they don't need to be split up.
+// This method of finding the 'natural split' can noticeably improve performance
+
+// Furthermore, implementing merge sort without recursion will increase the speed as well
+// Starting from the beginning of the array and finding the natural split,
+// a reduce-like algorithm can be applied
+
+// Example: 
+// [3, 5, 4, 2, 7, 1, 6, 8, 9]
+// [[3, 5], [4], 2, 7, 1, 6, 8, 9]
+// [[3, 4, 5], 2, 7, 1, 6, 8, 9]
+// [[3, 4, 5], [2, 7], 1, 6, 8, 9]
+// [[2, 3, 4, 5, 7], 1, 6, 8, 9]
+// [[2, 3, 4, 5, 7], [1, 6, 8, 9]]
+// [[1, 2, 3, 4, 5, 6, 7, 8, 9]]
