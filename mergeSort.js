@@ -11,3 +11,32 @@
 // [2, 3, 4, 5], [1, 6, 7, 8], [9]
 // [1, 2, 3, 4, 5, 6, 7, 8], [9]
 // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+var simpleMergeSort = function(array){
+  var subsets = [];
+  for(var i = 0; i < array.length; i++){
+    subsets.push([array[i]]);
+  }
+  while(array.length > 1){
+
+  }
+}
+
+var merge = function(array1, array2){
+  var merged = [];
+  var next;
+  var targetLength = array1.length + array2.length;
+  var i1 = 0;
+  var i2 = 0;
+  while(merged.length < targetLength){
+    if( array1[i1] <= array2[i2] || !array2[i2] ){
+      next = array1[i1];
+      i1++;
+    } else {
+      next = array2[i2];
+      i2++;
+    }
+    merged.push(next);
+  }
+  return merged;
+}
