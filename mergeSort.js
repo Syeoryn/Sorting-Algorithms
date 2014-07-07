@@ -57,3 +57,18 @@ var merge = function(array1, array2){
 // [[2, 3, 4, 5, 7], 1, 6, 8, 9]
 // [[2, 3, 4, 5, 7], [1, 6, 8, 9]]
 // [[1, 2, 3, 4, 5, 6, 7, 8, 9]]
+
+var mergeSort = function(array){
+  var subsets = [];
+  var start = 0;
+  for(var i = 0; i < array.length; i++){
+    if(array[i] > array[i+1] || i === array.length - 1){
+      subsets.push( array.slice(start, i + 1) );
+      start = i + 1;
+      if(subsets.length === 2){
+        subsets = [merge(subsets[0], subsets[1])];
+      }
+    }
+  }
+  return subsets[0];
+}
