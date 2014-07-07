@@ -33,7 +33,7 @@ var merge = function(array1, array2){
       next = array2[i2];
       i2++;
     }
-    merged.push(next);
+    merged.push(next);  
   }
   return merged;
 }
