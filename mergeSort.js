@@ -29,7 +29,7 @@ var merge = function(array1, array2){
   var i1 = 0;
   var i2 = 0;
   while(merged.length < targetLength){
-    if( array1[i1] <= array2[i2] || !array2[i2] ){
+    if( array1[i1] <= array2[i2] || array2[i2] === undefined ){
       next = array1[i1];
       i1++;
     } else {
