@@ -7,7 +7,9 @@ var heapSort = function(array){
   while(array.length){
     heap.insert(array.pop());
   }
-  array.push(heap.remove());
+  while(heap.showFirst() !== undefined){
+    array.push(heap.remove());
+  }
   return array;
 }
 
@@ -63,7 +65,7 @@ Heap.prototype.remove = function(){
   var insertion = 0;
   var leftChild = this.leftChildOf(0);
   var rightChild = this.rightChildOf(0);
-  child = this._data[leftChild] < this._data[rightChild] ? leftChild : rightChild;
+  child = this._data[leftChild] < this._data[rightChild]  || this._data[rightChild] === undefined ? leftChild : rightChild;
   while(this._data[insertion] > this._data[child]){
     this.swap(insertion, child);
     insertion = child;
@@ -77,3 +79,5 @@ Heap.prototype.remove = function(){
 Heap.prototype.showFirst = function(){
   return this._data[0];
 }
+
+// TODO: fix case: heapSort([3, 6, 4, 7, 4, 5, 58, 9, 7, 4, 2, 3, 35]);
