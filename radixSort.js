@@ -12,10 +12,13 @@ var binaryRadixSort = function(array){
   var ones = [];
   var shifted;
 
+  // Determine number of digits in largest number
   var max = Math.max.apply(null, array);
   var length = Math.log(max) / Math.log(2);
 
+  // iterate over every element once for each digit in largest number
   for(var shiftBy = 0; shiftBy <= length; shiftBy++){
+    // sort each value into zeroes or ones based on the current digit being examined
     for(var i = 0; i < array.length; i++){
       shifted = array[i] >> shiftBy;
       if(shifted % 2 === 0) {
@@ -24,6 +27,7 @@ var binaryRadixSort = function(array){
         ones.push(array[i]);
       }
     }
+    // put zeroes and ones together, and continue
     array = zeroes.concat(ones);
     zeroes = [];
     ones = [];
