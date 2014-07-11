@@ -38,6 +38,14 @@ var merge = function(array1, array2){
   return merged;
 }
 
+var mergeSortedArrays = function(array){
+  if(array.length === 1) return array[0];
+  if(array.length === 2) return merge(array[0], array[1]);
+  var left  = array.slice( 0, Math.floor(array.length / 2) );
+  var right = array.slice( Math.floor(array.length / 2) );
+  return merge(mergeSortedArrays(left), mergeSortedArrays(right));
+}
+
 
 // Merge sort can be optimized by more selectively splitting the initial array.
 // Rather than splitting the array into the smallest pieces and merging from there,
@@ -51,24 +59,19 @@ var merge = function(array1, array2){
 
 // Example: 
 // [3, 5, 4, 2, 7, 1, 6, 8, 9]
-// [[3, 5], [4], 2, 7, 1, 6, 8, 9]
-// [[3, 4, 5], 2, 7, 1, 6, 8, 9]
-// [[3, 4, 5], [2, 7], 1, 6, 8, 9]
-// [[2, 3, 4, 5, 7], 1, 6, 8, 9]
-// [[2, 3, 4, 5, 7], [1, 6, 8, 9]]
+// [[3, 5], [4], [2, 7], [1, 6, 8, 9]]
+// [[3, 4, 5], [1, 2, 6, 7, 8, 9]]
 // [[1, 2, 3, 4, 5, 6, 7, 8, 9]]
 
 var mergeSort = function(array){
   var subsets = [];
   var start = 0;
+  // split array 
   for(var i = 0; i < array.length; i++){
     if(array[i] > array[i+1] || i === array.length - 1){
       subsets.push( array.slice(start, i + 1) );
       start = i + 1;
-      if(subsets.length === 2){
-        subsets = [merge(subsets[0], subsets[1])];
-      }
     }
   }
-  return subsets[0];
+  return mergeSortedArrays(subsets);
 }
