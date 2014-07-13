@@ -13,3 +13,50 @@
 // sorted.
 
 // Efficient implementations of quick sort are done in place, but are not stable.
+
+var quickSort = function(array, start, end){
+  start = start || 0;
+  end = end || array.length - 1;
+  if(end - start <= 1) return array;
+
+  var pivotPointer = start;
+  var leftPointer = start + 1;
+  var rightPointer = end;
+  var swapLeft = false;
+  var swapRight = false;
+  
+  while(leftPointer <= rightPointer){
+    console.log('left', leftPointer);
+    console.log('right', rightPointer);
+    if(array[leftPointer] < array[pivotPointer]){
+      leftPointer++;
+    } else {
+      swapLeft = true;
+    }
+    if(array[rightPointer] > array[pivotPointer]){
+      rightPointer--;
+    } else {
+      swapRight = true;
+    }
+    if(swapLeft && swapRight){
+      var temp = array[leftPointer];
+      array[leftPointer] = array[rightPointer];
+      array[rightPointer] = temp;
+      swapLeft = false;
+      swapRight = false;
+    }
+  }
+
+  // swap pivot with left of leftPointer
+  temp = array[leftPointer - 1];
+  array[leftPointer - 1] = array[pivotPointer];
+  array[pivotPointer] = temp;
+
+  // recurse left
+  quickSort(array, start, leftPointer - 2);
+
+  // recurse right
+  quickSort(array, leftPointer, end);
+
+  return array;
+};
