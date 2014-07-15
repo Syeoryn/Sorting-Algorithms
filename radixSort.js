@@ -7,7 +7,11 @@
 // Radix sort is a stable sort, meaning that when multiple values are placed in the same
 // bucket, order is maintained from the previous order
 
+
+// TODO: Fix for negative numbers
 var binaryRadixSort = function(array){
+  if(!array.length) return [];
+  var negatives = [];
   var zeroes = [];
   var ones = [];
   var shifted;
@@ -16,12 +20,16 @@ var binaryRadixSort = function(array){
   var max = Math.max.apply(null, array);
   var length = Math.log(max) / Math.log(2);
 
+
   // iterate over every element once for each digit in largest number
   for(var shiftBy = 0; shiftBy <= length; shiftBy++){
     // sort each value into zeroes or ones based on the current digit being examined
     for(var i = 0; i < array.length; i++){
       shifted = array[i] >> shiftBy;
-      if(shifted % 2 === 0) {
+      if(shiftBy === 0 && array[i] < 0){
+        negatives.push(array[i]);
+        console.log('negative!')
+      } else if(shifted % 2 === 0) {
         zeroes.push(array[i]);
       } else {
         ones.push(array[i]);
@@ -32,8 +40,15 @@ var binaryRadixSort = function(array){
     zeroes = [];
     ones = [];
   }
-
-  return array;
+  console.log(negatives);
+  if(isNaN(length)){
+    negatives = array;
+  }
+  negatives = negatives.map(function(num){return num * -1})
+  negatives = binaryRadixSort(negatives);
+  negatives = negatives.map(function(num){return num * -1}).reverse();
+  console.log('negatives', negatives)
+  return negatives.concat(array);
 }
 
 var inPlaceRadixSort = function(array){
