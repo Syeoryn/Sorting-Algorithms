@@ -8,7 +8,6 @@
 // bucket, order is maintained from the previous order
 
 
-// TODO: Fix for negative numbers
 var binaryRadixSort = function(array){
   if(!array.length) return [];
   var negatives = [];
@@ -19,7 +18,6 @@ var binaryRadixSort = function(array){
   // Determine number of digits in largest number
   var max = Math.max.apply(null, array);
   var length = Math.log(max) / Math.log(2);
-
 
   // iterate over every element once for each digit in largest number
   for(var shiftBy = 0; shiftBy <= length; shiftBy++){
@@ -40,14 +38,12 @@ var binaryRadixSort = function(array){
     zeroes = [];
     ones = [];
   }
-  console.log(negatives);
   if(isNaN(length)){
     negatives = array;
   }
   negatives = negatives.map(function(num){return num * -1})
   negatives = binaryRadixSort(negatives);
   negatives = negatives.map(function(num){return num * -1}).reverse();
-  console.log('negatives', negatives)
   return negatives.concat(array);
 }
 
