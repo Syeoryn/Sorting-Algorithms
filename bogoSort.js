@@ -18,3 +18,10 @@ var shuffle = function(array){
   }
   return array;
 }
+
+var isSorted = function(array){
+  for(var i = 1; i < array.length; i++){
+    if(array[i] < array[i - 1]) return false;
+  }
+  return true;
+}
