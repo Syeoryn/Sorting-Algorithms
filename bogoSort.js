@@ -3,9 +3,12 @@
 // If sorted, it stops
 
 var bogoSort = function(array){
+  var i = 0
   while(!isSorted(array)){
+    i++;
     shuffle(array);
   }
+  console.log('Iterations:', i);
   return array;
 }
 
