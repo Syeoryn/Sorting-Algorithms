@@ -8,3 +8,13 @@ var bogoSort = function(array){
   }
   return array;
 }
+
+var shuffle = function(array){
+  for(var i = 0; i < array.length; i++){
+    var newIndex = Math.floor(Math.random() * array.length - i) + i;
+    temp = array[i];
+    array[i] = array[newIndex];
+    array[newIndex] = temp;
+  }
+  return array;
+}
